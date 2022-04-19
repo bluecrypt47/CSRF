@@ -24,7 +24,7 @@ if (isset($_POST['register'])) {
     }
 
     // Kiểm tra username hoặc email có bị trùng hay không
-    $sql = "SELECT * FROM users WHERE email = '$email' OR username = '$username'";
+    $sql = "SELECT * FROM accounts WHERE email = '$email' OR username = '$username'";
 
     // Thực thi câu truy vấn
     $result = mysqli_query($conn, $sql);
@@ -35,7 +35,7 @@ if (isset($_POST['register'])) {
         // Dừng chương trình
         die();
     } else {
-        $sql = "INSERT INTO users (username, password, email) VALUES ('$username','$password','$email')";
+        $sql = "INSERT INTO accounts (username, password, email) VALUES ('$username','$password','$email')";
         echo '<script language="javascript">alert("Register Successfully!"); window.location="index.php";</script>';
 
         if (mysqli_query($conn, $sql)) {

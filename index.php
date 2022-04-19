@@ -105,8 +105,6 @@ setcookie('username', 'test');
                 <?php } ?>
             </tbody>
         </table>
-
-
     </div>
 
 </body>
