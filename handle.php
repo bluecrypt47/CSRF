@@ -36,7 +36,8 @@ if (isset($_POST['register'])) {
         die();
     } else {
         $sql = "INSERT INTO accounts (username, password, email) VALUES ('$username','$password','$email')";
-        echo '<script language="javascript">alert("Register Successfully!"); window.location="index.php";</script>';
+        echo "Register Successfully!";
+        echo '<script> window.location="index.php";</script>';
 
         if (mysqli_query($conn, $sql)) {
             echo "Tên đăng nhập: " . $_POST['username'] . "<br/>";
@@ -63,7 +64,7 @@ if (isset($_POST['login'])) {
     }
 
     // Kiểm tra email và password có trong DB không
-    $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+    $sql = "SELECT * FROM accounts WHERE email = '$email' AND password = '$password'";
 
     // Thực thi câu truy vấn
     $result = mysqli_query($conn, $sql);

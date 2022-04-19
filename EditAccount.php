@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <?php require 'handle.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,10 @@
 
 <body>
     <a class="btn btn-lg  " href="index.php"><b>Home</b></a>
+    <?php if (!isset($_SESSION['email'])) {
+        echo '<script>window.location="login.php";</script>';
+    }
+    ?>
     <?php
     if (isset($_GET['accountId'])) {
         $id = $_GET['accountId'];
@@ -58,9 +63,9 @@
                 $sql = "UPDATE `accounts` SET username='$username', email='$email', password='$password', role='$role' WHERE id='$id'";
 
                 if ($conn->query($sql) === TRUE) {
-                    echo '<script language="javascript">alert("Record edited successfully!"); window.location="index.php";</script>';
+                    echo '<script>window.location="index.php";</script>';
                 } else {
-                    echo '<script language="javascript">alert(Error editing record: " . $conn->error;); window.location="EditAccount.php";</script>';
+                    echo "Error editing record: " . $conn->error;
                 }
                 $conn->close();
             }

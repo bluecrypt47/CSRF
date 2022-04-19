@@ -3,6 +3,9 @@
 <?php
 // setcookie('username', 'test', ['httponly' => true, 'secure' => true]);
 setcookie('username', 'test');
+
+$token = md5(time());
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,24 +46,19 @@ setcookie('username', 'test');
 
 <body>
     <?php
-    if (isset($_COOKIE['username'])) {
-        echo $_COOKIE['username'];
-    }
-
     if (isset($_SESSION['email']) && $_SESSION['email']) {
         echo '<h1 align="center">Welcome ' . $_SESSION['email'] . "!</h1>";
         echo '<a href="logout.php" class="btn" >Logout</a> <br \>';
     } else {
         echo '<h1 align="center">You are not login!</h1>';
-        // echo '<a href="login.php" class="btn">Login</a>';
+        echo '<a href="login.php" class="btn">Login</a>';
     }
     ?>
-
     <!-- Register -->
     <div style="margin-left: 300px; width: 800px;">
         <form method="post" action="index.php" class="form">
 
-            <h2>Add Account</h2>
+            <h2 style="margin-left: 300px;">Add Account</h2>
 
             <input type="email" name="email" placeholder="Email" value="" required />
 
@@ -72,39 +70,44 @@ setcookie('username', 'test');
 
         </form>
         <br>
-        <table>
-            <thead>
-                <th>No.</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Action</th>
-            </thead>
-            <tbody align="center">
-                <?php
-                $sql = "SELECT * FROM accounts ";
+        <?php if (isset($_SESSION['email'])) { ?>
+            <table>
+                <thead>
+                    <th>No.</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </thead>
+                <tbody align="center">
+                    <?php
+                    $sql = "SELECT * FROM accounts ";
 
-                $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                $i = 1;
-                while ($row = mysqli_fetch_array($result)) { ?>
-                    <tr>
-                        <td><?php echo $i++; ?></td>
-                        <td><?php echo $row["username"]; ?></td>
-                        <td><?php echo $row["password"]; ?></td>
-                        <td><?php echo $row["email"]; ?></td>
-                        <?php if ($row["role"] == 1) { ?>
-                            <td>Admin</td>
-                        <?php } else { ?>
-                            <td>User</td>
-                        <?php } ?>
-                        <td><a class="btn btn-primary" href="EditAccount.php?accountId=<?php echo $row['id'] ?>">Edit</a>
-                        </td>
+                    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                    $i = 1;
+                    while ($row = mysqli_fetch_array($result)) { ?>
+                        <tr>
+                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $row["username"]; ?></td>
+                            <td><?php echo $row["password"]; ?></td>
+                            <td><?php echo $row["email"]; ?></td>
+                            <?php if ($row["role"] == 1) { ?>
+                                <td>Admin</td>
+                            <?php } else { ?>
+                                <td>User</td>
+                            <?php } ?>
+                            <td><a class="btn btn-primary" href="EditAccount.php?accountId=<?php echo $row['id'] ?>">Edit</a>
+                            </td>
 
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        <?php } else {
+            echo "<h3 align='center'>Please login to see the account list!!</h3>";
+        }
+        ?>
     </div>
 
 </body>
