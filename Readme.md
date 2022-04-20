@@ -28,3 +28,13 @@ Ngày: 18/04/2022
 - Sau khi attack
 ![Hinh 2.](~/../img/2.png)
 
+## Phòng chống
+- Cách dễ dàng nhất là ta sẽ thêm vào form 1 cái `token` nếu mà gửi lên server mà không có cái token này thì nó sẽ hiện lỗi.
+```html
+<form action="/ex.com" method="post">
+<input type="hidden" name="CSRFToken" value="OWY4NmQwODE4ODRjN2Q2NTlhMmZlYWEwYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZMGYwMGEwOA==">
+[...]
+</form>
+```
+- Hoặc có thể dùng thuộc tính `Samsite` của `Cookie` để phòng chống và đặt `SameSite=Strict` sẽ ngăn trình duyệt gửi cookie đi.
+
