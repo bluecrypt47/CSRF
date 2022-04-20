@@ -1,6 +1,16 @@
 Người thực hiện: Lê Trần Văn Chương
 Ngày: 18/04/2022
+Mục luc:
+- [CSRF](#csrf)
+- [Lab](#lab)
+- [Phòng chống](#phòng-chống)
 
+## CSRF
+- Cross-Site Request Forgery (CSRF) là một cuộc tấn công buộc người dùng cuối thực hiện các hành động không mong muốn trên ứng dụng web mà họ hiện đang được xác thực. Nếu nạn nhân là người dùng bình thường, một cuộc tấn công CSRF thành công có thể buộc người dùng thực hiện các yêu cầu thay đổi trạng thái như chuyển tiền, thay đổi địa chỉ email của họ,... . Nếu nạn nhân là tài khoản quản trị, CSRF có thể xâm phạm toàn bộ ứng dụng web.
+- CSRF là một cuộc tấn công đánh lừa nạn nhân gửi một yêu cầu độc hại. Nó kế thừa danh tính và đặc quyền của nạn nhân để thay mặt nạn nhân thực hiện một chức năng không mong muốn. Hầu hết các trang web, các yêu cầu trình duyệt tự động bao gồm bất kỳ thông tin đăng nhập nào được liên kết với trang web, chẳng hạn như cookie người dùng, địa chỉ IP, thông tin đăng nhập,... . Do đó, nếu người dùng hiện đã được xác thực vào trang web, trang web sẽ không có cách nào để phân biệt giữa yêu cầu giả mạo do nạn nhân gửi và yêu cầu hợp pháp do nạn nhân gửi.
+- CSRF tấn công chức năng nhắm mục tiêu gây ra thay đổi trạng thái trên máy chủ, chẳng hạn như thay đổi địa chỉ email hoặc mật khẩu của nạn nhân hoặc mua thứ gì đó.
+
+## Lab
 - Link: 
     - Victim: https://00bluec10.000webhostapp.com/index.php
     - Attack: https://php-bacsic.000webhostapp.com/
